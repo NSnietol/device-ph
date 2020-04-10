@@ -4,15 +4,14 @@ from config.logsmanager import logger
 import os
 
 
-def getEnvironment():
+def get_environment():
     return os.getenv("env") if os.getenv("env") is not None else "dev"
 
 
-def getPropertyValue(property):
+def get_property_value(property):
     logger.info("Get property : " + property)
-    logger.info("Environment "+getEnvironment())
     response = os.getenv(property)
     if(response is None):
-        return os.getenv(getEnvironment()+"."+property)
+        return os.getenv(get_environment()+"."+property)
     else:
         return response
