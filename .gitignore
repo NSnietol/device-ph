@@ -1,3 +1,8 @@
+#Local 'files'
+
+__main__ copy.py
+__*__ copy.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
