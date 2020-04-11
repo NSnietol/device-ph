@@ -6,7 +6,7 @@ from exceptions.internet_exception import NoInternetException
 
 def check_connection():
     try:
-        for index in range(1,int(get_property_value("internal.retry.count"))+1):
+        for index in range(1, int(get_property_value("internal.retry.count"))+1):
             response = requests.get(get_property_value("internal.url.test"))
             if(response.status_code == 200):
                 logger.info("Connection OK")

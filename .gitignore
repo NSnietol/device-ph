@@ -1,7 +1,9 @@
 #Local 'files'
 
 __main__ copy.py
-__*__ copy.py
+*__ copy.py
+cellery__ copy.py
+*.p
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
