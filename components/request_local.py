@@ -27,7 +27,7 @@ def post_request(url, body, headers):
         except Exception as e:
             logger.warning(
                 "Retrying  {0}  the request to {1}".format(index, url))
-
+    logger.info("Response status : "+ str(response.status_code))
     return response
 
 
@@ -52,5 +52,5 @@ def get_request(url, headers):
         except Exception as e:
             logger.warning(
                 "Retrying  {0}  the request to {1}".format(index, url))
-
+    logger.info("Response status : "+ str(response.status_code))
     return response
