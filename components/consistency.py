@@ -1,7 +1,7 @@
 from components.request_local import get_request
 from components.property_manager import get_property_value
-from components.utils.json_util import json_to_obj
-from config.logsmanager import logger
+from components.utils.json_util import json_to_obj_latest
+from components.config.logsmanager import logger
 from exceptions.phman_exception import NoReservationsFound, NoResidentsFound
 
 
@@ -62,7 +62,7 @@ def get_all_people(id_ph):
     response = get_request(url, None)
     if(response.status_code > 400 and response.status_code < 500):
         raise NoResidentsFound(str(response.text))
-    return json_to_obj(response.content)
+    return json_to_obj_latest(response.content)
 
 
 def get_all_reservations(id):

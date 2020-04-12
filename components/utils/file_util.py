@@ -1,33 +1,16 @@
-
-import pickle
-from components.property_manager import get_property_value
-from config.logsmanager import logger
-
 from os.path import expanduser
+from loguru import logger
 import os
 
-home = expanduser("~")+os.sep+get_property_value("internal.user.folder")
-
-path = home + os.sep+get_property_value("internal.user.name")
+from components.property_manager import get_property_value
 
 
+def get_folder():
+    home = expanduser("~")+os.sep+get_property_value("internal.folder")
+    create_folder(home)
+    return home
 
-
-def create_folder():
-    if not os.path.exists(home):
-        logger.info('Create folder'+home)
-        os.mkdir(home)
-
-
-create_folder()
-
-
-def save_user(usuario):
-    logger.info('saving user ',usuario.email)
-    pickle.dump(usuario, open(path, "wb"))
-
-
-def get_user():
-    logger.info('getting user ')
-    return pickle.load(open(path, "rb"))
-
+def create_folder(folder):
+    if not os.path.exists(folder):
+        logger.info('Create folder'+folder)
+        os.mkdir(folder)

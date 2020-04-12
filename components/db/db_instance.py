@@ -1,6 +1,6 @@
 from components.db.connection import *
 from models.db_models import *
-from config.logsmanager import logger
+from components.config.logsmanager import logger
 
 
 def create_tables():
