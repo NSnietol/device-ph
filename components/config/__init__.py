@@ -1,0 +1,1 @@
+from components.config.setting import *

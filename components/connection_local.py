@@ -1,6 +1,6 @@
 import requests
 from components.property_manager import get_property_value
-from config.logsmanager import logger
+from components.config.logsmanager import logger
 from exceptions.internet_exception import NoInternetException
 
 
