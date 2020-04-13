@@ -8,7 +8,6 @@ from components.property_manager import get_property_value
 from components.utils.file_util import get_folder
 
 
-
 path = get_folder() + os.sep+get_property_value("internal.log.file")
 
 rotation = get_property_value("internal.log.rotation")
