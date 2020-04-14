@@ -3,6 +3,7 @@ from components.property_manager import get_property_value
 from components.property_manager import logger
 from components.request_local import post_request
 from components.utils.json_util import json_to_obj_latest
+from components.utils.bycript_util import generatePassEncripted
 from exceptions.internet_exception import WrongCredenciales
 
 
@@ -18,5 +19,7 @@ def do_login(email, password):
         usuario = json_to_obj_latest(response.content)
     elif response.status_code == 400:
         raise WrongCredenciales("Wrong credencials for "+email)
+    usuario.password=generatePassEncripted(password)
+    print(usuario)
     #save_user(usuario)
     return usuario
