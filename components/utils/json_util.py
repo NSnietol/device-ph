@@ -28,6 +28,8 @@ class DictObject(object):
                setattr(self, a, DictObject(b) if isinstance(b, dict) else b)
     def get_dict(self):
         return dict(self.__dict__.items())
+    def __str__(self):
+        return str(self.__dict__.items())
 
 def json_to_obj_latest(data): 
     return DictObject(json.loads(data))
