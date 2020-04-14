@@ -3,7 +3,6 @@ from components.property_manager import get_property_value
 from components.property_manager import logger
 from components.request_local import post_request
 from components.utils.json_util import json_to_obj_latest
-from components.utils.file_util import save_user
 from exceptions.internet_exception import WrongCredenciales
 
 

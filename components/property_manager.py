@@ -1,4 +1,4 @@
-from components.config.logsmanager import logger
+from loguru import logger
 import os
 
 

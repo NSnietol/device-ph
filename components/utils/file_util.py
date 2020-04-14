@@ -12,5 +12,4 @@ def get_folder():
 
 def create_folder(folder):
     if not os.path.exists(folder):
-        logger.info('Create folder'+folder)
         os.mkdir(folder)
