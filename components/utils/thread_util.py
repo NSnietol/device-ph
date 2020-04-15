@@ -1,18 +1,17 @@
 import threading
 from loguru import logger
 
-def execute_background(target, args=None):
-    logger.info(
-        "================background task {0} ==========".format(str(target)))
 
-    if(args!=None):
+def execute_background(target, args=None):
+    logger.info("=============background task {0} ========".format(str(target)))
+
+    if(args != None):
         t1 = threading.Thread(target=target, args=args)
     else:
         t1 = threading.Thread(target=target)
 
     t1.start()
     t1.join()
-
 
 
 """

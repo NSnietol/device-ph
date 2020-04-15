@@ -17,8 +17,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 
-def call_controller():
-    pass
+
 
 class LoginForm():
     def setupUi(self, Dialog, controller):
@@ -36,8 +35,8 @@ class LoginForm():
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(90, 70, 301, 81))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(
-            "fronted/media/asset-log-official.png"))
+        path_d = os.path.join(self.get_path(),'media','asset-log-official.png')
+        self.label.setPixmap(QtGui.QPixmap(path_d))
         self.label.setObjectName("label")
         self.push_button_iniciar_sesion = QtWidgets.QPushButton(self.frame)
         self.push_button_iniciar_sesion.setGeometry(
@@ -81,11 +80,10 @@ class LoginForm():
             _translate("Dialog", "Contraseña"))
 
     def center(self):
-        qRect = self.Dialog.frameGeometry()
-        centerPoint = QDesktopWidget().availableGeometry().center()
-
-        qRect.moveCenter(centerPoint)
-        self.Dialog.move(qRect.topLeft())
+        q_rect = self.Dialog.frameGeometry()
+        center_point = QDesktopWidget().availableGeometry().center()
+        q_rect.moveCenter(center_point)
+        self.Dialog.move(q_rect.topLeft())
 
     def showMain(self):
         self.MainWindow = QtWidgets.QMainWindow()
@@ -94,11 +92,14 @@ class LoginForm():
         self.MainWindow.show()
 
     def _create_events(self):
-        self.line_edit_password.returnPressed.connect(call_controller)
-        self.push_button_iniciar_sesion.clicked.connect(call_controller)
+        self.line_edit_password.returnPressed.connect(self.get_functions)
+        self.push_button_iniciar_sesion.clicked.connect(self.get_functions)
 
     def get_path(self):
         return os.path.dirname(__file__)
+    
+    def get_functions(self):
+        return self.controller.login_sgph()
 
    
 
