@@ -1,0 +1,41 @@
+*{
+     font-family:century gothic;
+        font-size:17px;
+    }
+    
+    QFrame{
+        background:  rgb(0, 191, 165);
+        border-radius:17px
+    
+    }
+    QPushButton{
+    background: rgb(93, 242, 214);
+    border-radius: 60px;
+    }
+    
+    #Form{
+    background: white;
+    }
+    QToolButton{
+    background: rgb(93, 242, 214);
+    border-radius:30px;
+    }
+    QLabel{
+    color:white;
+    }
+    
+    QPushButton{
+    color:white;
+    border-radius:20px;
+    }
+    QPushButton:hover{
+    background:rgb(38, 166, 154);
+    border-radius:20px;
+    color:white;
+    }
+    QLineEdit{
+    background:transparent;
+    border:none;
+    color:white;
+    border-bottom: 1px solid white;
+    }

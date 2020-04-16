@@ -34,7 +34,7 @@ def get_current_device():
         logger.info('Current device '+devices[0].mac)
         return devices[0]
     else:
-        raise NoDeviceFound()
+        raise NoDeviceFound('Dispositivo no registrado, contacte el admin')
 
 
 def get_current_user():

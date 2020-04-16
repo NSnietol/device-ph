@@ -13,3 +13,6 @@ def get_property_value(property):
         return os.getenv(get_environment()+"."+property)
     else:
         return response
+
+def get_list_property(property):
+    return get_property_value(property).split(",")

@@ -7,27 +7,23 @@ from components.utils.bycript_util import generatePassEncripted
 from components.utils.json_util import DictObject
 from exceptions.internet_exception import WrongCredenciales
 from exceptions.sgph_exception import UserNoAllowed
+from exceptions.phman_exception import NoGuardFound
 
-
-def do_login(email, password)->DictObject:
-    url = get_property_value("url.sgph")+"auth/signin"
-    data = {'email': email, 'password': password}
-    print(data)
+def check_guard_permissions(email, id_ph)->bool:
+    url = get_property_value("url.phman")+"access/api/v1/vigilants/verify"
+    data = {'email': email, 'idPropiedad': id_ph}
     headers = {"accept": "application/json",
                "Content-Type": "application/json"}
     response = post_request(url, data, headers=headers)
     if(response.status_code == 200):
-        usuario = json_to_obj_latest(response.content)
-    elif response.status_code == 400:
-        raise WrongCredenciales("Wrong credencials for "+email)
-    usuario.password = generatePassEncripted(password)
-    check_permissions(usuario)
-    return usuario
+        return bool(response.content.decode('utf-8'))
+    elif response.status_code == 404 :
+        raise NoGuardFound("Este {0} no está registrado en el sistema ".format(email))
+
 
 
 def check_permissions(user):
     roles = get_allowed_roles(user.roles)
-    logger.warning('result',str(roles))
     if(len(roles) > 0):
         return get_current_rol(roles)
     else:
@@ -36,8 +32,6 @@ def check_permissions(user):
 
 def get_allowed_roles(roles):
     permissions = get_list_property("internal.permissions")
-    logger.warning(str(permissions))
-    logger.warning(roles)
     return list(set(permissions).intersection(set(roles)))
 
 
