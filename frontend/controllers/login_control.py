@@ -37,11 +37,11 @@ class LoginController():
                 if(permissions_ph == False):
                     raise NoPermissionFound()
                 else:
-                    save_user(save_user.get_dict())
+                    save_user(user.get_dict())
 
             else:
-                save_user(save_user.get_dict())
-
+                save_user(user.get_dict())
+                QtWidgets.QMessageBox.information(None, 'Bienvenido', user.email)
         except NoDeviceFound as no_device:
             QtWidgets.QMessageBox.warning(None, 'WARNING', str(no_device))
         except NoInternetException as no_internet:
@@ -55,7 +55,7 @@ class LoginController():
 
         except Exception as e:
             logger.warning(str(e))
-            QtWidgets.QMessageBox.warning(
+            QtWidgets.QMessageBox.critical(
                 None, 'WARNING', 'ERROR 500, contactar al equipo de soporte')
 
 

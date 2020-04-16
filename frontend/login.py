@@ -93,7 +93,7 @@ class LoginForm():
 
     def _create_events(self):
         self.line_edit_password.returnPressed.connect(self.get_functions)
-        self.push_button_iniciar_sesion.clicked.connect(self.get_functions)
+        #self.push_button_iniciar_sesion.clicked.connect(self.get_functions)
 
     def get_path(self):
         return os.path.dirname(__file__)
