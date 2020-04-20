@@ -17,6 +17,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 
+from components.utils.file_util import get_path_file
 
 
 class LoginForm():
@@ -25,8 +26,8 @@ class LoginForm():
         self.Dialog = Dialog
         self.Dialog.setObjectName("Login")
         self.Dialog.resize(452, 551)
-        path_d = os.path.join(self.get_path(),'css','style.css')
-        self.Dialog.setStyleSheet(open(path_d).read())
+        self.Dialog.setStyleSheet(
+            open(get_path_file(__file__,[ 'css', 'style.css'])).read())
         self.frame = QtWidgets.QFrame(Dialog)
         self.frame.setGeometry(QtCore.QRect(-10, 80, 491, 511))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -35,13 +36,13 @@ class LoginForm():
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(90, 70, 301, 81))
         self.label.setText("")
-        path_d = os.path.join(self.get_path(),'media','asset-log-official.png')
-        self.label.setPixmap(QtGui.QPixmap(path_d))
+        self.label.setPixmap(QtGui.QPixmap(get_path_file(__file__, ['media', 'asset-log-official.png'])))
         self.label.setObjectName("label")
         self.push_button_iniciar_sesion = QtWidgets.QPushButton(self.frame)
         self.push_button_iniciar_sesion.setGeometry(
             QtCore.QRect(120, 340, 241, 41))
-        self.push_button_iniciar_sesion.setObjectName("push_button_iniciar_sesion")
+        self.push_button_iniciar_sesion.setObjectName(
+            "push_button_iniciar_sesion")
         self.line_edit_usuario = QtWidgets.QLineEdit(self.frame)
         self.line_edit_usuario.setGeometry(QtCore.QRect(50, 170, 351, 51))
         self.line_edit_usuario.setObjectName("line_edit_usuario")
@@ -55,7 +56,7 @@ class LoginForm():
         self.toolButton.setText("")
 
         icon = QtGui.QIcon()
-        path_d = os.path.join(self.get_path(),'media','login.png')
+        path_d = os.path.join(self.get_path(), 'media', 'login.png')
         icon.addPixmap(QtGui.QPixmap(path_d),
                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton.setIcon(icon)
@@ -69,11 +70,13 @@ class LoginForm():
         self.center()
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.set_default_user()
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.push_button_iniciar_sesion.setText(_translate("Dialog", "Iniciar"))
+        self.push_button_iniciar_sesion.setText(
+            _translate("Dialog", "Iniciar"))
         self.line_edit_usuario.setPlaceholderText(
             _translate("Dialog", "Usuario"))
         self.line_edit_password.setPlaceholderText(
@@ -85,30 +88,25 @@ class LoginForm():
         q_rect.moveCenter(center_point)
         self.Dialog.move(q_rect.topLeft())
 
-    def showMain(self):
-        self.MainWindow = QtWidgets.QMainWindow()
-        self.main = Ui_MainWindow()
-        self.main.setupUi(self.MainWindow)
-        self.MainWindow.show()
-
     def _create_events(self):
         self.line_edit_password.returnPressed.connect(self.get_functions)
-        #self.push_button_iniciar_sesion.clicked.connect(self.get_functions)
+        # self.push_button_iniciar_sesion.clicked.connect(self.get_functions)
 
     def get_path(self):
         return os.path.dirname(__file__)
-    
+
     def get_functions(self):
         return self.controller.login_sgph()
 
-   
+    def set_default_user(self):
+        self.line_edit_usuario.setText("admin@testing.com")
+        self.line_edit_password.setText('667788')
 
 
 
 if __name__ == "__main__":
     import sys
 
- 
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
     ui = LoginForm()
