@@ -27,7 +27,7 @@ def post_request(url, body, headers):
         except Exception as e:
             logger.warning(
                 "Retrying  {0}  the request to {1}".format(index, url))
-    logger.info("Response status : "+ str(response.status_code))
+    logger.info("Response status : " + str(response.status_code))
     return response
 
 
@@ -52,5 +52,30 @@ def get_request(url, headers):
         except Exception as e:
             logger.warning(
                 "Retrying  {0}  the request to {1}".format(index, url))
-    logger.info("Response status : "+ str(response.status_code))
+    logger.info("Response status : " + str(response.status_code))
+    return response
+
+
+def get_request_general(url, headers, retry_count=5, general={}):
+
+    check_connection()
+
+    logger.info('GET Request url ' + url)
+    logger.info("Request headers" + str(headers))
+    response = None
+
+    for index in range(1, retry_count):
+        try:
+            response = requests.get(url=url, headers=headers, **general)
+
+            if(response.status_code == 200):
+                logger.debug("Response", str(response.content))
+                break
+            else:
+                logger.warning("Retrying  {index}  the request to", url)
+
+        except Exception as e:
+            logger.warning(
+                "Retrying  {0}  the request to {1}".format(index, url))
+    logger.info("Response status : " + str(response.status_code))
     return response

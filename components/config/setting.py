@@ -1,11 +1,11 @@
 
-from pathlib import Path 
+from pathlib import Path
 
 from dotenv import load_dotenv
 from loguru import logger
 from components.property_manager import get_property_value
 from components.utils.thread_util import execute_background
-from requests import Session
+import requests
 
 load_dotenv()
 
@@ -13,15 +13,18 @@ env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 logger.info(' .env done :)')
 
-""" Heroku sleep a minimum of seven hours every day. so I active the server """
+""" Heroku server sleeps each seven hours every day. so I active the server before requests """
+
+
 def asyn_activation_heroku():
 
     try:
-        session = Session()
-        session.get(get_property_value('url.phman'))
-        session.get(get_property_value('url.sgph'))
+
+        requests.get(get_property_value('url.phman'), None, verify=False, timeout=2)
+        requests.get(get_property_value('url.sgph'), None, verify=False, timeout=2)
         logger.info('Activing heroku servers')
     except Exception:
         pass
-    
+
+
 execute_background(asyn_activation_heroku)
