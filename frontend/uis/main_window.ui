@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainPHWindow</class>
+ <widget class="QMainWindow" name="MainPHWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1190</width>
+    <height>711</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+background:rgb(255, 255, 255);
+
+  font-size: 13px;
+
+}
+QLabel,QRadioButton{
+background:transparent;
+border:none;
+border-bottom: 1px solid green;
+
+}
+QLineEdit,QPushButton,BComboBox{
+border-radius: 4px;
+border: 2px solid gray;
+
+}
+
+
+
+
+QPushButton{
+background: rgb(93, 242, 214);
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>60</y>
+      <width>911</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="group_box_contenedor_opciones">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>60</y>
+      <width>181</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="push_button_registar_huella">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>170</y>
+       <width>181</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Biometria</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="push_button_estado_dispositivo">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>181</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Estado del dispositivo</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_estado_dispositivo">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>630</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Estado de conexion</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1190</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuOpciones">
+    <property name="title">
+     <string>Opciones</string>
+    </property>
+    <addaction name="action_cerrar_usuario"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuacerca_de_ph_man">
+    <property name="title">
+     <string>acerca de PH MAN</string>
+    </property>
+   </widget>
+   <addaction name="menuOpciones"/>
+   <addaction name="menuacerca_de_ph_man"/>
+  </widget>
+  <action name="actionAgregar_residente">
+   <property name="text">
+    <string>Agregar residente</string>
+   </property>
+  </action>
+  <action name="actionAgregar_visitante">
+   <property name="text">
+    <string>Agregar visitante</string>
+   </property>
+  </action>
+  <action name="actionAccionar_compuerta">
+   <property name="text">
+    <string>Accionar compuerta</string>
+   </property>
+  </action>
+  <action name="action_cerrar_usuario">
+   <property name="text">
+    <string>Cerrar usuario : </string>
+   </property>
+  </action>
+  <action name="actionActivar_persona">
+   <property name="text">
+    <string>Activar persona</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

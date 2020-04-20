@@ -36,8 +36,8 @@ def check_permissions(user):
 
 def get_allowed_roles(roles):
     permissions = get_list_property("internal.permissions")
-    logger.warning(str(permissions))
-    logger.warning(roles)
+    logger.info(str(permissions))
+    logger.info(roles)
     return list(set(permissions).intersection(set(roles)))
 
 
