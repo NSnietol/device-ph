@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1044</width>
-    <height>704</height>
+    <width>1098</width>
+    <height>734</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,7 +36,7 @@ border: 2px solid gray;
 
 </string>
   </property>
-  <widget class="QTabWidget" name="tabWidget">
+  <widget class="QTabWidget" name="tab_widget">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -48,162 +48,177 @@ border: 2px solid gray;
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QWidget" name="tab">
+   <widget class="QWidget" name="tab_fingerprint">
     <attribute name="title">
      <string>Tab 1</string>
     </attribute>
-    <widget class="QGroupBox" name="group_box_dispositivo">
+    <widget class="QGroupBox" name="group_box_inside_dispositivo">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>10</y>
-       <width>771</width>
-       <height>491</height>
+       <x>50</x>
+       <y>50</y>
+       <width>711</width>
+       <height>401</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
-      <string/>
+      <string>Info del dispositivo</string>
      </property>
-     <widget class="QGroupBox" name="group_box_inside_dispositivo">
+     <widget class="QLineEdit" name="line_edit_nombre_dispositivo_value">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>220</x>
         <y>30</y>
-        <width>711</width>
-        <height>321</height>
+        <width>241</width>
+        <height>31</height>
        </rect>
       </property>
-      <property name="title">
-       <string>Info del dispositivo</string>
-      </property>
-      <widget class="QLineEdit" name="line_edit_nombre_dispositivo_value">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>30</y>
-         <width>241</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">D{
+      <property name="styleSheet">
+       <string notr="true">D{
 
 background: rgb(255, 0, 255)
 }</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_nombre_dispositivo">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>181</width>
-         <height>20</height>
-        </rect>
-       </property>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_nombre_dispositivo">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nombre del dispositivo</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_device_type">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tipo de dispositivo</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="combo_box_device_type">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>70</y>
+        <width>241</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <item>
        <property name="text">
-        <string>Nombre del dispositivo</string>
+        <string>Seleccionar</string>
        </property>
-      </widget>
-      <widget class="QLabel" name="label_area_comun">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>80</y>
-         <width>181</width>
-         <height>20</height>
-        </rect>
-       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="push_button_registrar_dispositivo">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>300</y>
+        <width>241</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Activar</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_mac">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>180</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MAC ( ID UNICO)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_mac_value">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>180</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_estado_dispositivo">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ESTADO </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_estado_dispositivo_value">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>220</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>INACTIVO</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_area_comun">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Area común</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="combo_box_area_comun">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>120</y>
+        <width>241</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <item>
        <property name="text">
-        <string>Area común</string>
+        <string>Seleccionar</string>
        </property>
-      </widget>
-      <widget class="QComboBox" name="combo_box_area_comun">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>70</y>
-         <width>241</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <item>
-        <property name="text">
-         <string>Seleccionar</string>
-        </property>
-       </item>
-      </widget>
-      <widget class="QPushButton" name="push_button_registrar_dispositivo">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>270</y>
-         <width>241</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Activar</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_mac">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>130</y>
-         <width>181</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MAC ( ID UNICO)</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_mac_value">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>130</y>
-         <width>241</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_estado_dispositivo">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>180</y>
-         <width>181</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ESTADO </string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_estado_dispositivo_value">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>180</y>
-         <width>241</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>INACTIVO</string>
-       </property>
-      </widget>
+      </item>
      </widget>
     </widget>
    </widget>
