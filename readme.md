@@ -2,7 +2,7 @@
 ## RASPERRY PI - PH MAN
 #### Interactions
 
-![Component Interactions ](./diagrams/images/diagram.jpg)
+![Component Interactions ](./diagrams/images/diagram.png)
 
 #### Folders
 
