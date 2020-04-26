@@ -50,14 +50,17 @@ class LoginController():
                     None, 'Bienvenido', user.email)
                 self.go_main()
         except NoDeviceFound as no_device:
+            logger.exception(no_device)
             QtWidgets.QMessageBox.warning(None, 'WARNING', str(no_device))
         except NoInternetException as no_internet:
             QtWidgets.QMessageBox.warning(None, 'WARNING', str(no_internet))
         except WrongCredenciales as wrong_cre:
+            logger.exception(wrong_cre)
             QtWidgets.QMessageBox.warning(None, 'WARNING', str(wrong_cre))
         except NoGuardFound as no_guard:
             QtWidgets.QMessageBox.warning(None, 'WARNING', str(no_guard))
         except UserNoAllowed as user_no:
+            logger.exception(user_no)
             QtWidgets.QMessageBox.warning(None, 'WARNING', str(user_no))
 
         except Exception as e:
