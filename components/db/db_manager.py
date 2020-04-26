@@ -11,7 +11,8 @@ def save_user(user):
     delete_tmp_users()
     try:
         return Usuario.create(**user)
-    except PeeweeException:
+    except PeeweeException as critical:
+        logger.exception(critical)
         return Usuario.create(**user)
 
 

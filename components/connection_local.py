@@ -11,8 +11,11 @@ def check_connection():
             if(response.status_code == 200):
                 logger.info("Connection OK")
                 break
+            else:
+                logger.debug('Retrying {}'.format(index))
+        
     except requests.exceptions.ConnectionError as econnection:
-        logger.info(econnection)
+        logger.exception(econnection)
         raise NoInternetException("Sorry! no connection")
         return False
     except Exception as egeneral:

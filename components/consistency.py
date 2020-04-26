@@ -1,6 +1,6 @@
 from components.request_local import get_request
 from components.property_manager import get_property_value
-from components.utils.json_util import json_to_obj_latest
+from components.utils.json_util import json_to_obj_v2
 from components.config.logsmanager import logger
 from exceptions.phman_exception import NoReservationsFound, NoResidentsFound
 
@@ -31,7 +31,7 @@ def sync_phman_people():
 
     except Exception as identifier:
         logger.critical("Error sync_phman previous status ")
-        logger.critical(identifier)
+        logger.exception(identifier)
     finally:
         logger.info("SCHEDULING PEOPLE TASK AGAIN ;)")
         threading.Timer(INTERVAL_TIME_TO_UPDATE, sync_phman_people).start()
@@ -47,7 +47,7 @@ def sync_phman_reservations():
         logger.error("Error sync_phman_all_reservations")
     except Exception as identifier:
         logger.critical("Error sync_phman previous status")
-        logger.critical(identifier)
+        logger.exception(identifier)
     finally:
         logger.info("SCHEDULE RESEVATIONS TASK AGAIN ;)")
         threading.Timer(INTERVAL_TIME_TO_UPDATE,
@@ -62,7 +62,7 @@ def get_all_people(id_ph):
     response = get_request(url, None)
     if(response.status_code > 400 and response.status_code < 500):
         raise NoResidentsFound(str(response.text))
-    return json_to_obj_latest(response.content)
+    return json_to_obj_v2(response.content)
 
 
 def get_all_reservations(id):

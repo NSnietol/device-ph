@@ -70,7 +70,8 @@ class DeviceController():
 
             except (CouldntCreateDevice, CouldntUpdateDevice) as create_device_exception:
                 QtWidgets.QMessageBox.warning(None, 'No se pudo completar la operacion',str(create_device_exception))
-            except PeeweeException:
+            except PeeweeException as critical:
+                logger.exception(critical)
                 QtWidgets.QMessageBox.warning(None, 'No se pudo completar la operacion','Localmente no se pudo guardar el dispositivo')
 
           
