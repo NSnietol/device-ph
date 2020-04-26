@@ -10,6 +10,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import qtawesome as qta
 import os
+from components.utils.thread_util import execute_background
 
 from components.utils.file_util import get_path_file
 
@@ -37,9 +38,9 @@ class MainPHWindow(object):
         self.push_button_estado_dispositivo = QtWidgets.QPushButton(self.group_box_contenedor_opciones)
         self.push_button_estado_dispositivo.setGeometry(QtCore.QRect(0, 0, 181, 111))
         self.push_button_estado_dispositivo.setObjectName("push_button_estado_dispositivo")
-        self.label_estado_dispositivo = QtWidgets.QLabel(self.centralwidget)
-        self.label_estado_dispositivo.setGeometry(QtCore.QRect(50, 630, 161, 16))
-        self.label_estado_dispositivo.setObjectName("label_estado_dispositivo")
+        self.label_estado_main_dispositivo = QtWidgets.QLabel(self.centralwidget)
+        self.label_estado_main_dispositivo.setGeometry(QtCore.QRect(50, 630, 161, 16))
+        self.label_estado_main_dispositivo.setObjectName("label_estado_main_dispositivo")
         self.main_ph_window.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(self.main_ph_window)
         self.statusbar.setObjectName("statusbar")
@@ -74,10 +75,11 @@ class MainPHWindow(object):
         QtCore.QMetaObject.connectSlotsByName(self.main_ph_window)
         self.load_tabs()
         self.set_view_estado_dispositivo()
-        self.load_default_values()
+        
         self.preferences()
         self.set_icons()
         self.events()
+        self.load_default_values()
       
 
     def retranslateUi(self, main_ph_window):
@@ -85,7 +87,7 @@ class MainPHWindow(object):
         self.main_ph_window.setWindowTitle(_translate("main_ph_window", "PH MAN"))
         self.push_button_registar_huella.setText(_translate("main_ph_window", "Biometria"))
         self.push_button_estado_dispositivo.setText(_translate("main_ph_window", "Estado del dispositivo"))
-        self.label_estado_dispositivo.setText(_translate("main_ph_window", "Estado de conexion"))
+        self.label_estado_main_dispositivo.setText(_translate("main_ph_window", "Estado de conexion"))
         self.menuOpciones.setTitle(_translate("main_ph_window", "Opciones"))
         self.menuacerca_de_ph_man.setTitle(_translate("main_ph_window", "acerca de PH MAN"))
         self.actionAgregar_residente.setText(_translate("main_ph_window", "Agregar residente"))
@@ -119,7 +121,13 @@ class MainPHWindow(object):
     def events(self):
         self.push_button_estado_dispositivo.clicked.connect(self.set_focus_device)
         self.push_button_registar_huella.clicked.connect(self.set_view_finger_print)
+        self.push_button_registrar_dispositivo.clicked.connect(self.update_create_device)
+        self.push_button_search.clicked.connect(self.search_person)
+        self.push_button_fingerprint.clicked.connect(self.update_fingerprint)
     
+
+    def set_status(self,value:str):
+        self.label_estado_main_dispositivo.setText('Dispositivo {0}'.format(value))
 
     def set_focus_device(self):
         self.set_view_estado_dispositivo()
@@ -187,7 +195,7 @@ class MainPHWindow(object):
         self.label_nombre_dispositivo.setText(_translate("Dialog", "Nombre del dispositivo"))
         self.label_device_type.setText(_translate("Dialog", "Tipo de dispositivo"))
         self.combo_box_device_type.setItemText(0, _translate("Dialog", "Seleccionar"))
-        self.push_button_registrar_dispositivo.setText(_translate("Dialog", "Activar"))
+        self.push_button_registrar_dispositivo.setText(_translate("Dialog", "Actualizar"))
         self.label_mac.setText(_translate("Dialog", "MAC ( ID UNICO)"))
         self.label_estado_dispositivo.setText(_translate("Dialog", "ESTADO "))
         self.label_estado_dispositivo_value.setText(_translate("Dialog", "INACTIVO"))
@@ -229,13 +237,13 @@ class MainPHWindow(object):
 "background: rgb(93, 242, 214);\n"
 "}")
         self.group_box_people.setObjectName("group_box_people")
-        self.pushButtonGuardarCambios = QtWidgets.QPushButton(self.group_box_people)
-        self.pushButtonGuardarCambios.setGeometry(QtCore.QRect(290, 200, 271, 41))
-        self.pushButtonGuardarCambios.setStyleSheet("\n"
+        self.push_button_save_biometric_information = QtWidgets.QPushButton(self.group_box_people)
+        self.push_button_save_biometric_information.setGeometry(QtCore.QRect(290, 200, 271, 41))
+        self.push_button_save_biometric_information.setStyleSheet("\n"
 "border-radius: 10px;\n"
 "\n"
 "")
-        self.pushButtonGuardarCambios.setObjectName("pushButtonGuardarCambios")
+        self.push_button_save_biometric_information.setObjectName("push_button_save_biometric_information")
         self.label_persona_habilitada = QtWidgets.QLabel(self.group_box_people)
         self.label_persona_habilitada.setGeometry(QtCore.QRect(20, 150, 241, 31))
         self.label_persona_habilitada.setObjectName("label_persona_habilitada")
@@ -272,12 +280,15 @@ class MainPHWindow(object):
         self.label_identification_value.setText(_translate("Dialog", "Numero de identificación"))
         self.push_button_search.setText(_translate("Dialog", "Buscar"))
         self.group_box_people.setTitle(_translate("Dialog", "Datos de la persona"))
-        self.pushButtonGuardarCambios.setText(_translate("Dialog", "Guardar"))
+        self.push_button_save_biometric_information.setText(_translate("Dialog", "Guardar"))
         self.label_persona_habilitada.setText(_translate("Dialog", "Persona habilitada"))
         self.checkBoxDesactivarPersona.setText(_translate("Dialog", "Sí"))
         self.label_actualizarHuella.setText(_translate("Dialog", "Actualizar huella"))
         self.push_button_fingerprint.setText(_translate("Dialog", "Actualizar"))
         self.label_name.setText(_translate("Dialog", "Nombres "))
+
+    def set_device_controller(self,controller):
+        self.device_controller= controller
 
     def set_view_estado_dispositivo(self):
         self.tab_widget.setCurrentIndex(0)
@@ -286,6 +297,23 @@ class MainPHWindow(object):
 
     def load_default_values(self):
         self.main_controller.set_default_values()
+        
+
+    def update_create_device(self):
+    
+        print(self.line_edit_nombre_dispositivo_value.text())
+        print(self.combo_box_device_type.currentText())
+        self.device_controller.save_update_device()
+        self.combo_box_device_type.currentText()
+
+     
+
+    def search_person(self):
+        pass
+
+    def update_fingerprint(self):
+        pass
+        
 
 if __name__ == "__main__":
     import sys

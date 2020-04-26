@@ -61,7 +61,7 @@ class LoginController():
             QtWidgets.QMessageBox.warning(None, 'WARNING', str(user_no))
 
         except Exception as e:
-            logger.warning(str(e))
+            logger.exception(e)
             QtWidgets.QMessageBox.critical(
                 None, 'WARNING', 'ERROR 500, contactar al equipo de soporte')
 

@@ -1,4 +1,4 @@
-from uuid import getnode as get_mac
+from getmac import get_mac_address as gma
 
 def get_device_mac():
-    return get_mac()
+    return gma()

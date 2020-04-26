@@ -1,4 +1,6 @@
 from components.db.connection import db,BaseModel
+import datetime
+
 from peewee import *
 
 
@@ -23,7 +25,7 @@ class Reserva(BaseModel):
 
 class Dispositivo(BaseModel):
     estado = TextField()
-    fechaRegistro = DateTimeField()
+    fechaRegistro = DateTimeField(default=datetime.datetime.now)
     id= TextField()
     mac = TextField()
     nombre = TextField()
@@ -45,7 +47,7 @@ class Persona(BaseModel):
 
 class Usuario(BaseModel):
     refresh = TextField()
-    id = IntegerField(unique=True)
+    idPropiedadHorizontal = IntegerField(unique=True)
     password=TextField(null=True)
     email = TextField()
     token = TextField()
