@@ -6,7 +6,7 @@ def get_environment():
     return os.getenv("env") if os.getenv("env") is not None else "dev"
 
 
-def get_property_value(property):
+def get_property_value(property)->str:
     logger.info("Get property : " + property)
     response = os.getenv(property)
     if(response is None):
@@ -14,5 +14,5 @@ def get_property_value(property):
     else:
         return response
 
-def get_list_property(property):
+def get_list_property(property)->list:
     return get_property_value(property).split(",")

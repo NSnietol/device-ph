@@ -16,3 +16,14 @@ class NoPermissionFound(Exception):
 
     def __init__(self, message='Usted no cuenta con permisos para administrar este dispositivo'):
         self.message = message
+
+
+class CouldntCreateDevice(Exception):
+
+    def __init__(self, message='No se pudo registrar el dispostivo'):
+        self.message = message
+
+class CouldntUpdateDevice(Exception):
+
+    def __init__(self, message='No se pudo actualizar el dispostivo'):
+        self.message = message

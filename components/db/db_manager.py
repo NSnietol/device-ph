@@ -28,7 +28,7 @@ def save_device(device):
         return Dispositivo.create(**device)
 
 
-def get_current_device():
+def get_current_device()->Dispositivo:
     devices = Dispositivo.select()
     if(len(devices) > 0):
         logger.info('Current device '+devices[0].mac)
@@ -37,7 +37,7 @@ def get_current_device():
         raise NoDeviceFound('Dispositivo no registrado, contacte el admin')
 
 
-def get_current_user():
+def get_current_user()->Usuario:
     users = Usuario.select()
     if(len(users) > 0):
         logger.info('Current user '+users[0].email)
