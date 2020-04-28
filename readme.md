@@ -23,6 +23,11 @@
     └── README.md
 
 
+#### Setting
+
+Make sure to install requirements libraries before to run the project, throught .
+     pip install -r requirements.txt 
+
 
 #### How to generate python file from ui file
 
