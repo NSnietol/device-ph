@@ -22,7 +22,7 @@ from components.db.db_manager import get_current_user
 from frontend.main import MainPHWindow
 from components.db.db_manager import save_user, get_current_device
 from frontend.controllers.device_controller import DeviceController
-
+from frontend.controllers.biometric_controller import BiometricController
 
 class MainController():
 
@@ -30,8 +30,9 @@ class MainController():
         print('main controller')
         self.main_ui = main_ui
         self.device_controller = DeviceController(main_ui)
+        self.biometric_controller = BiometricController(main_ui)
         self.main_ui.set_device_controller(self.device_controller)
-        
+        self.main_ui.set_biometric_controller(self.biometric_controller)
 
     def set_email(self):
         self.main_ui.action_cerrar_usuario.setText("Cerrar sesion :"+get_current_user().email)

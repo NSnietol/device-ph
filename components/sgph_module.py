@@ -1,4 +1,3 @@
-import requests
 from http import HTTPStatus
 
 from components.db.db_manager import get_current_user, get_current_device
@@ -9,7 +8,7 @@ from components.utils.json_util import json_to_obj_v2
 from components.utils.bycript_util import generatePassEncripted
 from components.utils.json_util import DictObject
 from exceptions.internet_exception import WrongCredenciales, BadResponse
-from exceptions.sgph_exception import NoDeviceFound, UserNoAllowed, NotCommomAreasFound
+from exceptions.sgph_exception import NoDeviceFound, NoPersonFound, NotCommomAreasFound, UserNoAllowed
 
 
 def do_login(email, password) -> DictObject:
@@ -68,6 +67,34 @@ def get_area_comunes(id_ph) -> list:
         return json_to_obj_v2(response.content)
     else:
         raise NotCommomAreasFound()
+
+
+def get_persona(numero_identificacion, tipo_identificacion, rol, id_propiedad_horizontal)->DictObject:
+
+    if(rol == "RESIDENTE"):
+        url = get_property_value("url.sgph")+"persona"
+        response = get_request_general(url, headers=get_header_with_auth(), general={
+            'params': {'numeroDocumento': numero_identificacion, 'tipoDocumento': tipo_identificacion}})
+    else:
+        url = get_property_value("url.phman")+"access/api/v1/vigilants-and-support-personals/phs/{0}/{1}/{2}".format(
+            id_propiedad_horizontal, tipo_identificacion, numero_identificacion)
+        response = get_request(url, headers=get_header_with_auth())
+
+    if(response.status_code == HTTPStatus.OK):
+        person = json_to_obj_v2(response.content)
+
+        if(rol == "RESIDENTE"):
+            if(id_propiedad_horizontal in [ph.idPh for ph in person.phs]):
+                return person
+            else:
+                logger.warning('Tried to look for a person who is not living here')
+                raise NoPersonFound()
+        
+
+
+
+    else:
+        raise NoPersonFound()
 
 
 def get_area_comun(id_area_comun) -> DictObject:
