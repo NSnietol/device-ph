@@ -26,10 +26,7 @@
 #### Setting
 
 Make sure to install requirements libraries before to run the project, throught .
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
      pip install -r requirements.txt 
 
 
