@@ -14,8 +14,6 @@ load_dotenv(dotenv_path=env_path)
 logger.info(' .env done :)')
 
 """ Heroku server sleeps each seven hours every day. so I active the server before requests """
-
-
 def asyn_activation_heroku():
 
     try:

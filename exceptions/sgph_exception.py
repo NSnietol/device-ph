@@ -5,6 +5,14 @@ class NoUserFound(Exception):
     def __str__(self):
         return self.message
 
+
+class NoPersonFound(Exception):
+
+    def __init__(self, message='Persona no encontrada en el sistema'):
+        self.message = message
+    def __str__(self):
+        return self.message
+
 class NoDeviceFound(Exception):
 
     def __init__(self, message='Dispositivo no encontrado'):

@@ -36,7 +36,7 @@ border: 2px solid gray;
 
 </string>
   </property>
-  <widget class="QTabWidget" name="tabWidget">
+  <widget class="QTabWidget" name="tab_widget">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -58,7 +58,7 @@ border: 2px solid gray;
        <x>30</x>
        <y>10</y>
        <width>771</width>
-       <height>491</height>
+       <height>541</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -73,7 +73,7 @@ border: 2px solid gray;
         <x>40</x>
         <y>20</y>
         <width>621</width>
-        <height>171</height>
+        <height>231</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -89,7 +89,7 @@ border: 2px solid gray;
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>30</y>
+         <y>80</y>
          <width>271</width>
          <height>31</height>
         </rect>
@@ -114,20 +114,20 @@ border: 2px solid gray;
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>40</y>
+         <y>90</y>
          <width>241</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Tipo de identicacion</string>
+        <string>Tipo de identificación</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_identification_value">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>80</y>
+         <y>130</y>
          <width>241</width>
          <height>31</height>
         </rect>
@@ -140,7 +140,7 @@ border: 2px solid gray;
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>80</y>
+         <y>130</y>
          <width>271</width>
          <height>31</height>
         </rect>
@@ -150,7 +150,7 @@ border: 2px solid gray;
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>120</y>
+         <y>170</y>
          <width>271</width>
          <height>31</height>
         </rect>
@@ -164,12 +164,45 @@ border-radius: 10px;
         <string>Buscar</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_rol_value">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>241</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Rol </string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="combo_box_rol">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>271</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>PERSONAL DE SOPORTE</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>RESIDENTE</string>
+        </property>
+       </item>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="group_box_people">
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>200</y>
+        <y>260</y>
         <width>621</width>
         <height>261</height>
        </rect>
@@ -182,7 +215,7 @@ background: rgb(93, 242, 214);
       <property name="title">
        <string>Datos de la persona</string>
       </property>
-      <widget class="QPushButton" name="pushButtonGuardarCambios">
+      <widget class="QPushButton" name="push_button_save_biometric_data">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -201,33 +234,7 @@ border-radius: 10px;
         <string>Guardar</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_persona_habilitada">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>150</y>
-         <width>241</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Persona habilitada</string>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBoxDesactivarPersona">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>160</y>
-         <width>51</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Sí</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_actualizarHuella">
+      <widget class="QLabel" name="label_actualizar_huella">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -258,7 +265,7 @@ border-radius: 10px;
         <string>Actualizar</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_name">
+      <widget class="QLabel" name="label_names">
        <property name="geometry">
         <rect>
          <x>20</x>

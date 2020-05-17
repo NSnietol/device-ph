@@ -24,7 +24,6 @@ def check_guard_permissions(email, id_ph) -> bool:
             "Este {0} no está registrado en el sistema ".format(email))
 
 
-
 def create_device(device):
     url = get_property_value('url.phman')+"access/api/v1/devices"
 
@@ -42,7 +41,10 @@ def update_device(device):
     create_device_response = put_request(url, device, get_header_with_auth())
 
     if(create_device_response.status_code != HTTPStatus.OK):
-        raise CouldntUpdateDevice()
+        if(create_device_response.status_code == 500):
+            create_device(device)
+        else:
+            raise CouldntUpdateDevice()
     else:
         return DictObject(create_device_response.json())
 

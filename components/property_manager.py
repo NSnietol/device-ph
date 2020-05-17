@@ -1,5 +1,7 @@
-from loguru import logger
+""" property manager"""
 import os
+from loguru import logger
+
 
 
 def get_environment():

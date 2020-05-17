@@ -1,9 +1,9 @@
+
+from exceptions.phman_exception import NoReservationsFound, NoResidentsFound
 from components.request_local import get_request
 from components.property_manager import get_property_value
 from components.utils.json_util import json_to_obj_v2
 from components.config.logsmanager import logger
-from exceptions.phman_exception import NoReservationsFound, NoResidentsFound
-
 
 import time
 import threading
